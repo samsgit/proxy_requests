@@ -17,7 +17,7 @@ class ProxyRequests:
     # get a list of sockets from sslproxies.org
     def __acquire_sockets(self):
         r = requests.get("https://www.sslproxies.org/")
-        matches = re.findall(r"<td>\d+.\d+.\d+.\d+</td><td>\d+</td>", r.text)
+        matches = re.findall(r"<td>\d+\.\d+\.\d+\.\d+</td><td>\d+</td>", r.text)
         revised_list = [m1.replace("<td>", "") for m1 in matches]
         for socket_str in revised_list:
             self.sockets.append(socket_str[:-5].replace("</td>", ":"))
